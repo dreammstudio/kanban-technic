@@ -89,7 +89,7 @@ export default function Home() {
               }}>Add</button>
             </li>
             {future.map((item,index) => (
-            <li className="text">
+            <li className="text" key={`${item}.${index}`}>
               <div className="buttons">
               <button className="btn" onClick={(event) => left("future",event.target.parentElement.parentElement.children[1].textContent)}>Previous</button>
               <button className="btn" onClick={(event) => right("future",event.target.parentElement.parentElement.children[1].textContent)}>Next</button>
@@ -115,7 +115,7 @@ export default function Home() {
               }}>Add</button>
             </li>
             {present.map((item,index) => (
-            <li className="text">
+            <li className="text"  key={`${item}.${index}`}>
               <div className="buttons">
               <button className="btn" onClick={(event) => left("present",event.target.parentElement.parentElement.children[1].textContent)}>Previous</button>
               <button className="btn" onClick={(event) => right("present",event.target.parentElement.parentElement.children[1].textContent)}>Next</button>
@@ -142,7 +142,7 @@ export default function Home() {
               }}>Add</button>
             </li>
             {past.map((item,index) => (
-            <li className="text">
+            <li className="text"  key={`${item}.${index}`}>
               <div className="buttons">
               <button className="btn" onClick={(event) => left("past",event.target.parentElement.parentElement.children[1].textContent)}>Previous</button>
               <button className="btn" onClick={(event) => right("past",event.target.parentElement.parentElement.children[1].textContent)}>Next</button>
