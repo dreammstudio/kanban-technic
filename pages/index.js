@@ -1,56 +1,65 @@
 import {useState,useEffect} from 'react';
 export default function Home() {
-  let [future,setFuture] = useState([]);
-  let [past,setPast] = useState([]);
-  let [present,setPresent] = useState([]);
+  const [future,setFuture] = useState([]);
+  const [past,setPast] = useState([]);
+  const [present,setPresent] = useState([]);
   function add(type,item){
-    if(type==='future'){
-    setFuture([...future,item]);
-    }
-    if(type==='past'){
-    setPast([...past,item]);
-    }
-    if(type==='present'){
-    setPresent([...present,item]);
+
+    switch(type){
+      case 'future':
+        setFuture([...future,item]);
+        break;
+      case 'past':
+        setPast([...past,item]);
+        break;
+      case 'present':
+        setPresent([...present,item]);
+        break;
     }
   }
   function left(type,item){
-    if(type==='future'){
-    setFuture(future.filter(i=>i!==item));
-    setPast([...past,item]);
-    }
-    if(type==='past'){
-    setPast(past.filter(i=>i!==item));
-    setPresent([...present,item]);
-    }
-    if(type==='present'){
-    setPresent(present.filter(i=>i!==item));
-    setFuture([...future,item]);
+    switch(type){
+      case 'future':
+        setFuture(future.filter(i=>i!==item));
+        setPast([...past,item]);
+        break;
+      case 'past':
+        setPast(past.filter(i=>i!==item));
+        setPresent([...present,item]);
+        break;
+      case 'present':
+        setPresent(present.filter(i=>i!==item));
+        setFuture([...future,item]);
+        break;
     }
   }
   function right(type,item){
-    if(type==='future'){
-    setFuture(future.filter(i=>i!==item));
-    setPresent([...present,item]);
-    }
-    if(type==='past'){
-    setPast(past.filter(i=>i!==item));
-    setFuture([...future,item]);
-    }
-    if(type==='present'){
-    setPresent(present.filter(i=>i!==item));
-    setPast([...past,item]);
+    switch(type){
+      case 'future':
+        setFuture(future.filter(i=>i!==item));
+        setPresent([...present,item]);
+        break;
+      case 'past':
+        setPast(past.filter(i=>i!==item));
+        setFuture([...future,item]);
+        break;
+      case 'present':
+        setPresent(present.filter(i=>i!==item));
+        setPast([...past,item]);
+        break;
     }
   }
   function deleteItem(type,item){
-    if(type==='future'){
-    setFuture(future.filter(i=>i!==item));
-    }
-    if(type==='past'){
-    setPast(past.filter(i=>i!==item));
-    }
-    if(type==='present'){
-    setPresent(present.filter(i=>i!==item));
+    switch(type){
+      case 'future':
+        setFuture(future.filter(i=>i!==item));
+        break;
+      case 'past':
+        setPast(past.filter(i=>i!==item));
+        break;
+      case 'present':
+        setPresent(present.filter(i=>i!==item));
+        break;
     }
   }
 
@@ -66,7 +75,6 @@ export default function Home() {
     }
   },[])
   useEffect(() => {
-    console.log("degisti")
     localStorage.setItem('future',JSON.stringify(future));
     localStorage.setItem('past',JSON.stringify(past));
     localStorage.setItem('present',JSON.stringify(present));
@@ -89,7 +97,7 @@ export default function Home() {
               }}>Add</button>
             </li>
             {future.map((item,index) => (
-            <li className="text">
+            <li className="text" key={`${item}.${index}`}>
               <div className="buttons">
               <button className="btn" onClick={(event) => left("future",event.target.parentElement.parentElement.children[1].textContent)}>Previous</button>
               <button className="btn" onClick={(event) => right("future",event.target.parentElement.parentElement.children[1].textContent)}>Next</button>
@@ -115,7 +123,7 @@ export default function Home() {
               }}>Add</button>
             </li>
             {present.map((item,index) => (
-            <li className="text">
+            <li className="text"  key={`${item}.${index}`}>
               <div className="buttons">
               <button className="btn" onClick={(event) => left("present",event.target.parentElement.parentElement.children[1].textContent)}>Previous</button>
               <button className="btn" onClick={(event) => right("present",event.target.parentElement.parentElement.children[1].textContent)}>Next</button>
@@ -142,7 +150,7 @@ export default function Home() {
               }}>Add</button>
             </li>
             {past.map((item,index) => (
-            <li className="text">
+            <li className="text"  key={`${item}.${index}`}>
               <div className="buttons">
               <button className="btn" onClick={(event) => left("past",event.target.parentElement.parentElement.children[1].textContent)}>Previous</button>
               <button className="btn" onClick={(event) => right("past",event.target.parentElement.parentElement.children[1].textContent)}>Next</button>
