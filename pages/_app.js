@@ -4,7 +4,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
     <Head>
-      <title>Kanban</title>
+      <title>Kanban Technic</title>
     </Head>
   <Component {...pageProps} />
   </>
